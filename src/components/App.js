@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './app.css';
+import rooms from '../roomInfo.js';
 
 class App extends Component {
   state = {
@@ -29,17 +30,14 @@ function testAPI() {
   let day = now.getUTCDay();
   let hour = now.getUTCHours() - now.getTimezoneOffset() / 60;
   let minute = now.getUTCMinutes();
-  let sensor = 'A81758FFFE03BCEF';
 
-  let rooms = {};
-
-  let req =
-    `https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/${sensor}/2017:01:01%2000:00:00/` +
-    `${year}:${month}:${day}%20${hour}:${minute}:00/1/139kTnm10ksR`;
-  console.log('Fetching...');
-  axios.get(req).then(res => {
-    console.log(res.data);
-    rooms['tjena'] = res.data[0].dd;
-    console.log(rooms);
+  Object.entries(rooms).forEach(room => {
+    Object.entries(room[1]).forEach(sensor => {
+      let sensorID = sensor[1];
+      let req =
+        `https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/${sensorID}/2017:01:01%2000:00:00/` +
+        `${year}:${month}:${day}%20${hour}:${minute}:00/1/139kTnm10ksR`;
+      axios.get(req).then(res => console.log(res.data[0]));
+    });
   });
 }
