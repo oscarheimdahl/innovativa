@@ -2,73 +2,44 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './app.css';
 
-let req =
-  'https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/' +
-  'A81758FFFE03BC34/' +
-  '2019:01:13%2000:00:00/' +
-  '2019:11:15%2000:00:00/' +
-  '100000000/' +
-  '139kTnm10ksR';
-
 class App extends Component {
   state = {
     temps: []
   };
 
-  componentDidMount() {
-    this.testAPI();
-  }
+  componentDidMount() {}
 
   render() {
     return (
       <div className="app">
         Innovativa test
-        {this.renderTemps()}
+        <br />
+        <button onClick={() => testAPI()}>API</button>
       </div>
     );
   }
-
-  renderTemps = () => {
-    return this.state.temps.map(measurement => {
-      let temp = measurement.slice(0, 2);
-      let color = 'green';
-      if (temp > 22) color = 'orange';
-      if (temp > 25) color = 'red';
-
-      return (
-        <div style={{ color: color }}>
-          {measurement}
-          <br />
-        </div>
-      );
-    });
-  };
-
-  testAPI = () => {
-    axios.get(req).then(res => {
-      let temps = [];
-      let measuredDates = [];
-      res.data
-        .filter(ele => {
-          let useTemp = true;
-          let date = ele.time.slice(5, 10);
-          let hour = ele.time.slice(11, 13);
-          measuredDates.forEach(measuredDate => {
-            if (measuredDate === date) useTemp = false;
-          });
-          if (useTemp) {
-            measuredDates.push(date);
-          }
-          return useTemp;
-        })
-        .map(ele =>
-          temps.push(ele.dd.temperature + ' - ' + ele.time.slice(5, 10))
-        );
-      temps.reverse();
-      console.log(temps.length);
-      this.setState({ temps });
-    });
-  };
 }
 
 export default App;
+
+function testAPI() {
+  let now = new Date();
+  let year = now.getUTCFullYear();
+  let month = now.getUTCMonth();
+  let day = now.getUTCDay();
+  let hour = now.getUTCHours() - now.getTimezoneOffset() / 60;
+  let minute = now.getUTCMinutes();
+  let sensor = 'A81758FFFE03BCEF';
+
+  let rooms = {};
+
+  let req =
+    `https://daresay-dev.eu-gb.cf.appdomain.cloud/innovativa/${sensor}/2017:01:01%2000:00:00/` +
+    `${year}:${month}:${day}%20${hour}:${minute}:00/1/139kTnm10ksR`;
+  console.log('Fetching...');
+  axios.get(req).then(res => {
+    console.log(res.data);
+    rooms['tjena'] = res.data[0].dd;
+    console.log(rooms);
+  });
+}
