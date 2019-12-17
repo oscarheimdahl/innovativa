@@ -14,8 +14,8 @@ class App extends Component {
     render() {
         return (
             <div className='app'>
-                Innovativa test
-                <br />
+                <p>Innovativa test</p>
+                <Home />
                 <button onClick={() => testAPI()}>API</button>
             </div>
         );
