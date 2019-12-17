@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './app.css';
-import testAPI from '../firestuff/fetch';
+import fetch from '../firestuff/fetch';
 
 class App extends Component {
   state = {
@@ -14,7 +14,7 @@ class App extends Component {
       <div className="app">
         Innovativa test
         <br />
-        <button onClick={() => testAPI()}>API</button>
+        <button onClick={() => fetch()}>API</button>
       </div>
     );
   }
