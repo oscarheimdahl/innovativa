@@ -25,7 +25,10 @@ function fetch() {
 function addDataToRoom(data, roomName) {
   if (!filledRooms[roomName]) filledRooms[roomName] = {};
   Object.entries(data).forEach(attr => {
-    filledRooms[roomName][attr[0]] = attr[1];
+    let previousValue = filledRooms[roomName][attr[0]];
+    if (previousValue) {
+      filledRooms[roomName][attr[0]] = (previousValue + attr[1]) / 2;
+    } else filledRooms[roomName][attr[0]] = attr[1];
   });
 }
 
