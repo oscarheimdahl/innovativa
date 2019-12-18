@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './app.css';
 import testAPI from '../firestuff/fetch';
+import sortResult from '../firestuff/sort';
 
 class App extends Component {
   state = {
@@ -15,6 +16,7 @@ class App extends Component {
         Innovativa test
         <br />
         <button onClick={() => testAPI()}>API</button>
+        <button onClick={() => sortResult()}>SORT TEST</button>
       </div>
     );
   }
