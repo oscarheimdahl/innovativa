@@ -1,26 +1,31 @@
-import axios from 'axios';
-import rooms from '../roomInfo';
-
+const axios = require('axios');
+const rooms = require('./rooms.js');
 let filledRooms = {};
 
-function fetch() {
+let fetch = async function() {
   let requests = [];
   Object.entries(rooms).forEach(room => {
     Object.entries(room[1]).forEach((sensor, index) => {
       let req = buildRequest(sensor[1]);
       requests.push(
-        axios.get(req).then(res => {
-          addDataToRoom(res.data[0].dd, room[0]);
-        })
+        axios
+          .get(req)
+          .then(res => {
+            addDataToRoom(res.data[0].dd, room[0]);
+            return;
+          })
+          .catch(e => console.log(e))
       );
     });
   });
 
   //When all requests are finished
-  Promise.all(requests).then(_ => {
-    console.log(filledRooms);
-  });
-}
+  return Promise.all(requests)
+    .then(_ => {
+      return filledRooms;
+    })
+    .catch(e => console.log(e));
+};
 
 function addDataToRoom(data, roomName) {
   if (!filledRooms[roomName]) filledRooms[roomName] = {};
@@ -45,4 +50,4 @@ function buildRequest(sensorID) {
   );
 }
 
-export default fetch;
+module.exports = fetch;
