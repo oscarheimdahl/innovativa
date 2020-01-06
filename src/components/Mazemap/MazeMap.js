@@ -1,42 +1,71 @@
-import React, { Component } from 'react';
-import './MazeMap.css';
+import React, { Component } from "react";
+import "./MazeMap.css";
 
 class MazeMap extends Component {
-    state = {
-        // The DOM element ID for the map
-        container: 'mazemap-container',
+  state = {
+    // The DOM element ID for the map
+    container: "mazemap-container",
 
-        // The ID of the campus to show
-        campuses: 289,
+    // The ID of the campus to show
+    campuses: 289,
 
-        // Initial position of map
-        center: { lng: 20.311087, lat: 63.821773 },
+    // Initial position of map
+    center: { lng: 20.311087, lat: 63.821773 },
 
-        // Initial zoom of map
-        zoom: 14,
+    // Initial zoom of map
+    zoom: 14,
 
-        // Initial floor z level of map
-        zLevel: 2
-    };
+    // Initial floor z level of map
+    zLevel: 2
+  };
 
-    componentDidMount() {
-        var myMap = new window.Mazemap.Map(this.state);
-        this.setState({
-            myMap
-        });
-    }
+  componentDidMount() {
+    var myMap = new window.Mazemap.Map(this.state);
 
-    handleClick = e => {
-        this.state.myMap.flyTo({ center: e.lngLat, zoom: 16 });
-    };
+    this.setState({
+      myMap
+    });
+    myMap.on("load", function() {
+      // Initialize a Highlighter for POIs
+      // Storing the object on the map just makes it easy to access for other things
+      myMap.highlighter = new window.Mazemap.Highlighter(myMap, {
+        showOutline: true, // optional
+        showFill: true, // optional
+        outlineColor: window.Mazemap.Util.Colors.MazeColors.MazeBlue, // optional
+        fillColor: window.Mazemap.Util.Colors.MazeColors.MazeBlue // optional
+      });
+    });
+  }
+  componentWillUnmount() {}
+  setRoom(poi) {
+    window.Mazemap.Data.getPoi(poi).then(poi => {
+      console.log(poi); // Raw data about the POI.
+      var myMap = this.state.myMap;
+      myMap.zLevel = poi.properties.zLevel;
+      if (poi.geometry.type === "Polygon") {
+        myMap.highlighter.highlight(poi);
+      }
 
-    render() {
-        return (
-            <div>
-                <div id='mazemap-container' onClick={this.handleClick}></div>
-            </div>
-        );
-    }
+      var lngLat = window.Mazemap.Util.getPoiLngLat(poi);
+      this.state.myMap.flyTo({
+        center: lngLat,
+        zoom: 20
+      });
+    });
+  }
+
+  handleClick = e => {
+    this.state.myMap.flyTo({ center: e.lngLat, zoom: 16 });
+  };
+
+  render() {
+    return (
+      <div>
+        <button onClick={() => this.setRoom(759874)}>POI</button>
+        <div id="mazemap-container" onClick={this.handleClick}></div>
+      </div>
+    );
+  }
 }
 
 export default MazeMap;

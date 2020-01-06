@@ -1,23 +1,60 @@
-import React, { Component } from 'react';
-import './app.css';
-import testAPI from '../firestuff/fetch';
-import sortResult from '../firestuff/sort';
+import React, { Component } from "react";
+import "./app.css";
+import MazeMap from "./Mazemap/MazeMap";
+import Controls from "./Controls/Controls";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends Component {
   state = {
     temps: []
   };
 
-  componentDidMount() {}
+  attributes = {
+    temperature: 21,
+    body: 0,
+    light: 0.8,
+    humidity: 0.5,
+    co2: 0.3
+  };
+
+  setTemperature = temperature => {
+    this.attributes.temperature = temperature;
+  };
+  setBody = body => {
+    this.attributes.body = body;
+  };
+  setLight = light => {
+    this.attributes.light = light;
+  };
+  setHumidity = humidity => {
+    this.attributes.humidity = humidity;
+  };
+  setCo2 = co2 => {
+    this.attributes.co2 = co2;
+  };
 
   render() {
     return (
-      <div className="app">
-        Innovativa test
-        <br />
-        <button onClick={() => testAPI()}>API</button>
-        <button onClick={() => sortResult()}>SORT TEST</button>
-      </div>
+      <Router>
+        <div className="app">
+          <Switch>
+            <Route exact path="/">
+              <Controls
+                initialAttributes={this.attributes}
+                setTemperature={this.setTemperature}
+                setBody={this.setBody}
+                setLight={this.setLight}
+                setHumidity={this.setHumidity}
+                setCo2={this.setCo2}
+              />
+            </Route>
+            <Route path="/map">
+              tjennaaa
+              <MazeMap />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
