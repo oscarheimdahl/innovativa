@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./MazeMap.css";
+import axios from "axios";
+import qs from "qs";
 
 class MazeMap extends Component {
   state = {
@@ -17,6 +19,33 @@ class MazeMap extends Component {
 
     // Initial floor z level of map
     zLevel: 2
+  };
+
+  constructor(props) {
+    super(props);
+    console.log(props.attributes);
+  }
+
+  buttonClick = () => {
+    console.log(this.props.attributes);
+    let req = "https://us-central1-innovativa-1337.cloudfunctions.net/fetchAll";
+    fetch(req, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+      data: { temperature: 21, body: 0, light: 0.8, humidity: 0.5, co2: 0.3 }
+    })
+      .then(res => {
+        console.log(res.data[0]);
+        console.log("hahahhahahahahaha");
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+        console.log("Haaaaallå");
+      });
   };
 
   componentDidMount() {
@@ -63,6 +92,13 @@ class MazeMap extends Component {
       <div>
         <button onClick={() => this.setRoom(759874)}>POI</button>
         <div id="mazemap-container" onClick={this.handleClick}></div>
+        <button
+          onClick={() => {
+            this.buttonClick();
+          }}
+        >
+          api
+        </button>
       </div>
     );
   }

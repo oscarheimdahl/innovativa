@@ -49,8 +49,7 @@ class App extends Component {
               />
             </Route>
             <Route path="/map">
-              tjennaaa
-              <MazeMap />
+              <MazeMap attributes={this.attributes} />
             </Route>
           </Switch>
         </div>
