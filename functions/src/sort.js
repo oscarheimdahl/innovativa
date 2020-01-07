@@ -17,7 +17,7 @@ function sort(params, rooms) {
     numberOfRooms++;
   });
   sortByScore(results, sortedResults, numberOfRooms);
-  console.log(sortedResults);
+  //   console.log(sortedResults);
   return sortedResults;
 }
 
