@@ -7,74 +7,21 @@ class MazeMap extends Component {
   state = {
     // The DOM element ID for the map
     container: "mazemap-container",
-
     // The ID of the campus to show
     campuses: 289,
-
     // Initial position of map
     center: { lng: 20.311087, lat: 63.821773 },
-
     // Initial zoom of map
     zoom: 14,
-
     // Initial floor z level of map
     zLevel: 2
   };
 
-  constructor(props) {
-    super(props);
-    // this.fetchRooms();
-    this.fakeFetchRooms();
+  componentDidUpdate(prevProps) {
+    if (this.props.poi !== prevProps.poi) {
+      this.setRoom(this.props.poi);
+    }
   }
-
-  fakeFetchRooms = () => {
-    const delay = t => new Promise(resolve => setTimeout(resolve, t));
-    delay(2000).then(res => {
-      this.setState({
-        rooms: [
-          {
-            roomName: "NC355",
-            roomScore: 1849.316660308838
-          },
-          {
-            roomName: "NC356",
-            roomScore: 1850.2440646362306
-          },
-          {
-            roomName: "NC359",
-            roomScore: 1856.08170501709
-          },
-          {
-            roomName: "NC358",
-            roomScore: 1856.961674041748
-          },
-          {
-            roomName: "NC357",
-            roomScore: 1858.394358986318
-          }
-        ]
-      });
-
-      console.log("done");
-    });
-  };
-
-  fetchRooms = () => {
-    console.log(this.props.attributes);
-    let req =
-      "https://europe-west1-innovativa-1337.cloudfunctions.net/fetchAll";
-    axios
-      .post(req, this.props.attributes)
-      .then(res => {
-        console.log(res.data);
-        console.log("hahahhahahahahaha");
-        console.log(res);
-      })
-      .catch(error => {
-        console.log(error);
-        console.log("Haaaaallå");
-      });
-  };
 
   componentDidMount() {
     var myMap = new window.Mazemap.Map(this.state);
@@ -96,7 +43,6 @@ class MazeMap extends Component {
   componentWillUnmount() {}
   setRoom(poi) {
     window.Mazemap.Data.getPoi(poi).then(poi => {
-      console.log(poi); // Raw data about the POI.
       var myMap = this.state.myMap;
       myMap.zLevel = poi.properties.zLevel;
       if (poi.geometry.type === "Polygon") {
@@ -118,9 +64,9 @@ class MazeMap extends Component {
   render() {
     return (
       <div>
-        <button onClick={() => this.setRoom(759874)}>POI</button>
+        {/* <button onClick={() => this.setRoom(759874)}>POI</button> */}
         <div id="mazemap-container" onClick={this.handleClick}></div>
-        {this.state.rooms == null ? "laddar..." : "klar"}
+        {/* {this.state.rooms == null ? "laddar..." : "klar"} */}
       </div>
     );
   }

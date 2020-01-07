@@ -86,7 +86,10 @@ class Controls extends Component {
           onChange={(_, value) => this.props.setCo2(value)}
         ></Slider>
         <Button style={{ background: "lightcoral" }}>
-          <Link style={{ textDecoration: "none", color: "black" }} to="/map">
+          <Link
+            style={{ textDecoration: "none", color: "black" }}
+            to="/results"
+          >
             Mappp
           </Link>
         </Button>
