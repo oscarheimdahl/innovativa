@@ -23,22 +23,50 @@ class MazeMap extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props.attributes);
+    // this.fetchRooms();
+    this.fakeFetchRooms();
   }
 
-  buttonClick = () => {
-    console.log(this.props.attributes);
-    let req = "https://us-central1-innovativa-1337.cloudfunctions.net/fetchAll";
-    fetch(req, {
-      method: "POST",
+  fakeFetchRooms = () => {
+    const delay = t => new Promise(resolve => setTimeout(resolve, t));
+    delay(2000).then(res => {
+      this.setState({
+        rooms: [
+          {
+            roomName: "NC355",
+            roomScore: 1849.316660308838
+          },
+          {
+            roomName: "NC356",
+            roomScore: 1850.2440646362306
+          },
+          {
+            roomName: "NC359",
+            roomScore: 1856.08170501709
+          },
+          {
+            roomName: "NC358",
+            roomScore: 1856.961674041748
+          },
+          {
+            roomName: "NC357",
+            roomScore: 1858.394358986318
+          }
+        ]
+      });
 
-      headers: {
-        "Content-Type": "application/json"
-      },
-      data: { temperature: 21, body: 0, light: 0.8, humidity: 0.5, co2: 0.3 }
-    })
+      console.log("done");
+    });
+  };
+
+  fetchRooms = () => {
+    console.log(this.props.attributes);
+    let req =
+      "https://europe-west1-innovativa-1337.cloudfunctions.net/fetchAll";
+    axios
+      .post(req, this.props.attributes)
       .then(res => {
-        console.log(res.data[0]);
+        console.log(res.data);
         console.log("hahahhahahahahaha");
         console.log(res);
       })
@@ -92,13 +120,7 @@ class MazeMap extends Component {
       <div>
         <button onClick={() => this.setRoom(759874)}>POI</button>
         <div id="mazemap-container" onClick={this.handleClick}></div>
-        <button
-          onClick={() => {
-            this.buttonClick();
-          }}
-        >
-          api
-        </button>
+        {this.state.rooms == null ? "laddar..." : "klar"}
       </div>
     );
   }
