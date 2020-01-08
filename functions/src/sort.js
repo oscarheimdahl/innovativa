@@ -1,4 +1,6 @@
-function sortResult(params, rooms) {
+const pois = require('./pois');
+
+function sort(params, rooms) {
   // let params = {
   //     body: 1,
   //     temperature: 24,
@@ -91,8 +93,7 @@ function compareType(attributeName, paramAttribute, roomAttribute) {
     case 'light':
       return deltaAttribute * 0.1;
     default:
-      break;
+      return 0;
   }
 }
-
-export default sortResult;
+module.exports = sort;
