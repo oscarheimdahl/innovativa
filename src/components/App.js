@@ -3,6 +3,7 @@ import "./app.css";
 import MazeMap from "./Mazemap/MazeMap";
 import Controls from "./Controls/Controls";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Results from "./Results/Results";
 
 class App extends Component {
   state = {
@@ -48,8 +49,9 @@ class App extends Component {
                 setCo2={this.setCo2}
               />
             </Route>
-            <Route path="/map">
-              <MazeMap attributes={this.attributes} />
+            <Route path="/results">
+              <Results attributes={this.attributes}></Results>
+              {/* <MazeMap attributes={this.attributes} /> */}
             </Route>
           </Switch>
         </div>

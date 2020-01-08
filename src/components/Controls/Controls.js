@@ -89,7 +89,7 @@ class Controls extends Component {
                         config={this.co2Attributes}
                         onChange={(_, value) => this.props.setCo2(value)}
                     ></Slider>
-                    <Link to='/map'>
+                    <Link to='/results'>
                         <Button id='button_map'>Mappp</Button>
                     </Link>
                 </div>
