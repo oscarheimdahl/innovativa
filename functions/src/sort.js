@@ -1,4 +1,38 @@
+const pois = require('./pois');
+
 function sort(params, rooms) {
+  // let params = {
+  //     body: 1,
+  //     temperature: 24,
+  //     light: 0.4,
+  //     humidity: 0.6,
+  //     co2: 0.3
+  // }
+
+  // let rooms = {
+  //     NC356: {
+  //         temperature: 22,
+  //         body: 3,
+  //         humidity: 4,
+  //         co2: 3,
+  //         light: 3
+  //     },
+  //     NC346: {
+  //         temperature: 230,
+  //         body: 333,
+  //         humidity: 222,
+  //         co2: 11,
+  //         light: 2
+  //     },
+  //     NC256: {
+  //         temperature: -240,
+  //         body: 0,
+  //         humidity: 33,
+  //         co2: 1,
+  //         light: 2334
+  //     }
+  // }
+
   let results = {};
   let sortedResults = [];
   let numberOfRooms = 0;
@@ -17,7 +51,7 @@ function sort(params, rooms) {
     numberOfRooms++;
   });
   sortByScore(results, sortedResults, numberOfRooms);
-  //   console.log(sortedResults);
+  console.log(sortedResults);
   return sortedResults;
 }
 
@@ -35,7 +69,8 @@ function sortByScore(results, sortedResults, numberOfRooms) {
       ) {
         lowestScoreRoom = {
           roomName: room[0],
-          roomScore: room[1].roomScore
+          roomScore: room[1].roomScore,
+          poi: pois[room[0]]
         };
         lowestScore = room[1].roomScore;
       }
@@ -61,5 +96,4 @@ function compareType(attributeName, paramAttribute, roomAttribute) {
       return 0;
   }
 }
-
 module.exports = sort;

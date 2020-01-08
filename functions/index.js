@@ -8,7 +8,7 @@ exports.fetchAll = functions
   .https.onRequest((request, response) => {
     cors(request, response, () => {
       console.log(request.body);
-      // let params = JSON.parse(request.body);
+
       let params = request.body;
       fetch()
         .then(res => {
