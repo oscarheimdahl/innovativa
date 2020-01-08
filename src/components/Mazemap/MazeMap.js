@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Children } from "react";
 import "./MazeMap.css";
 import axios from "axios";
 import qs from "qs";
+
+let myMap;
 
 class MazeMap extends Component {
   state = {
@@ -14,7 +16,8 @@ class MazeMap extends Component {
     // Initial zoom of map
     zoom: 14,
     // Initial floor z level of map
-    zLevel: 2
+    zLevel: 2,
+    autoSetRTLTextPlugin: ""
   };
 
   componentDidUpdate(prevProps) {
@@ -24,48 +27,48 @@ class MazeMap extends Component {
   }
 
   componentDidMount() {
-    var myMap = new window.Mazemap.Map(this.state);
-
-    this.setState({
-      myMap
-    });
-    myMap.on("load", function() {
-      // Initialize a Highlighter for POIs
-      // Storing the object on the map just makes it easy to access for other things
-      myMap.highlighter = new window.Mazemap.Highlighter(myMap, {
-        showOutline: true, // optional
-        showFill: true, // optional
-        outlineColor: window.Mazemap.Util.Colors.MazeColors.MazeBlue, // optional
-        fillColor: window.Mazemap.Util.Colors.MazeColors.MazeBlue // optional
+    try {
+      myMap = new window.Mazemap.Map(this.state);
+      console.log(this.state);
+      myMap.on("load", function() {
+        // Initialize a Highlighter for POIs
+        // Storing the object on the map just makes it easy to access for other things
+        myMap.highlighter = new window.Mazemap.Highlighter(myMap, {
+          showOutline: true, // optional
+          showFill: true, // optional
+          outlineColor: window.Mazemap.Util.Colors.MazeColors.MazeBlue, // optional
+          fillColor: window.Mazemap.Util.Colors.MazeColors.MazeBlue // optional
+        });
       });
-    });
+    } catch {
+      console.log("Ajdå");
+    }
+
+    this.setState({});
   }
-  componentWillUnmount() {}
+
   setRoom(poi) {
     window.Mazemap.Data.getPoi(poi).then(poi => {
-      var myMap = this.state.myMap;
+      // var myMap = this.state.myMap;
       myMap.zLevel = poi.properties.zLevel;
       if (poi.geometry.type === "Polygon") {
         myMap.highlighter.highlight(poi);
       }
 
       var lngLat = window.Mazemap.Util.getPoiLngLat(poi);
-      this.state.myMap.flyTo({
+      // this.state.myMap.flyTo({
+      myMap.flyTo({
         center: lngLat,
         zoom: 20
       });
     });
   }
 
-  handleClick = e => {
-    this.state.myMap.flyTo({ center: e.lngLat, zoom: 16 });
-  };
-
   render() {
     return (
       <div>
         {/* <button onClick={() => this.setRoom(759874)}>POI</button> */}
-        <div id="mazemap-container" onClick={this.handleClick}></div>
+        <div id="mazemap-container"></div>
         {/* {this.state.rooms == null ? "laddar..." : "klar"} */}
       </div>
     );
