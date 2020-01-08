@@ -1,0 +1,21 @@
+.room {
+  align-self: center;
+  background: white;
+  transition-duration: 500ms;
+}
+
+.room:hover {
+  background: lightgray;
+  cursor: pointer;
+}
+
+.selectedRoom {
+  background: darkgray;
+}
+
+.roomList {
+  /* background: limegreen; */
+  text-align: center;
+  width: 50%;
+  margin: auto;
+}
