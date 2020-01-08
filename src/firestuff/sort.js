@@ -67,7 +67,8 @@ function sortByScore(results, sortedResults, numberOfRooms) {
       ) {
         lowestScoreRoom = {
           roomName: room[0],
-          roomScore: room[1].roomScore
+          roomScore: room[1].roomScore,
+          poi: pois[room[0]]
         };
         lowestScore = room[1].roomScore;
       }
