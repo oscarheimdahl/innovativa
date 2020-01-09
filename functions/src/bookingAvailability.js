@@ -8,6 +8,7 @@ let fetch = async function() {
     )
     .then(res => {
       console.log(res.data);
+      return res;
     })
     .catch(err => {
       console.log(err);
