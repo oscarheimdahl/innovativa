@@ -8,7 +8,19 @@ import axios from "axios";
 import { Button } from "@material-ui/core";
 
 class BookChecker extends Component {
-  getHtml = url => {};
+  getHtml = () => {
+    console.log("KLICK!");
+    const url =
+      "https://europe-west1-innovativa-1337.cloudfunctions.net/booked";
+
+    axios
+      .get(url, this.props.attributes)
+      .then(res => {
+        console.log(res);
+        return;
+      })
+      .catch(e => console.log(e));
+  };
 
   render() {
     return (
