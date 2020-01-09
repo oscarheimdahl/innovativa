@@ -1,4 +1,5 @@
-const pois = require('./pois');
+const pois = require("./pois");
+const bookings = require("./books");
 
 function sort(params, rooms) {
   // let params = {
@@ -47,7 +48,7 @@ function sort(params, rooms) {
         attribute[1]
       );
     });
-    results[roomName]['roomScore'] = roomScore;
+    results[roomName]["roomScore"] = roomScore;
     numberOfRooms++;
   });
   sortByScore(results, sortedResults, numberOfRooms);
@@ -70,7 +71,8 @@ function sortByScore(results, sortedResults, numberOfRooms) {
         lowestScoreRoom = {
           roomName: room[0],
           roomScore: room[1].roomScore,
-          poi: pois[room[0]]
+          poi: pois[room[0]],
+          book: bookings[room[0]]
         };
         lowestScore = room[1].roomScore;
       }
@@ -82,15 +84,15 @@ function sortByScore(results, sortedResults, numberOfRooms) {
 function compareType(attributeName, paramAttribute, roomAttribute) {
   let deltaAttribute = Math.abs(paramAttribute - roomAttribute);
   switch (attributeName) {
-    case 'temperature':
+    case "temperature":
       return deltaAttribute * 10;
-    case 'body':
+    case "body":
       return deltaAttribute * 10;
-    case 'humidity':
+    case "humidity":
       return deltaAttribute * 0.1;
-    case 'co2':
+    case "co2":
       return deltaAttribute * 0.1;
-    case 'light':
+    case "light":
       return deltaAttribute * 0.1;
     default:
       return 0;
