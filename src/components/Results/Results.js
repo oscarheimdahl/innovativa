@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MazeMap from "../Mazemap/MazeMap";
 import RoomList from "../RoomList/RoomList";
 import Axios from "axios";
+import BookChecker from "../BookChecker/BookChecker";
 
 export default class Results extends Component {
   state = {
@@ -64,6 +65,7 @@ export default class Results extends Component {
   render() {
     return (
       <div>
+        <BookChecker></BookChecker>
         <MazeMap
           poi={this.state.poi}
           attributes={this.props.attributes}

@@ -25,10 +25,7 @@ export default class RoomList extends Component {
             {index + 1 + ".    " + room.roomName}
           </span>
           {"     "}
-          <a
-            className="boka"
-            href="https://cloud.timeedit.net/umu/web/studres2/ri.html?h=t&sid=6&p=20200109-20200109&objects=13366.4%2C&ox=0&types=0&fe=0&part=f&tg=-1&se=f&exw=t&rr=1"
-          >
+          <a className="boka" href={room.book}>
             <Button color="secondary">Boka</Button>
           </a>
         </div>
