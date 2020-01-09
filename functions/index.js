@@ -29,7 +29,8 @@ exports.booked = functions
       checkBooking()
         .then(res => {
           console.log(res);
-          return res;
+          response.send(res);
+          return;
         })
         .catch(err => {
           console.log(err);
