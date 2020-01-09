@@ -2,6 +2,8 @@
   align-self: center;
   background: white;
   transition-duration: 500ms;
+  height: 6vh;
+  line-height: 6vh;
 }
 
 .room:hover {
@@ -16,6 +18,7 @@
 .roomList {
   /* background: limegreen; */
   text-align: center;
-  width: 50%;
+
+  background: red;
   margin: auto;
 }

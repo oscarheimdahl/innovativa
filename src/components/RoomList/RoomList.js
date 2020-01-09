@@ -8,7 +8,7 @@ export default class RoomList extends Component {
   renderRooms = () => {
     return this.props.rooms.map((room, index) => {
       return (
-        <li
+        <div
           className={
             this.state.selectedRoomIndex === index
               ? "selectedRoom room"
@@ -20,16 +20,15 @@ export default class RoomList extends Component {
             this.setState({ selectedRoomIndex: index });
           }}
         >
-          {/* {index + 1 + ". "}
-          {room.roomName} */}
+          {index + 1 + ".    "}
 
           {room.roomName}
-        </li>
+        </div>
       );
     });
   };
 
   render() {
-    return <ol className="roomList">{this.renderRooms()}</ol>;
+    return <div className="roomList">{this.renderRooms()}</div>;
   }
 }

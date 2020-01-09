@@ -1,30 +1,35 @@
 #control {
-    width: 100%;
-    height: 80vh;
+  width: 100%;
+  height: 70vh;
 }
 
 #control > h1 {
-    margin: 0;
-    padding: 5% 0;
-    font-size: 2em;
-    font-family: cursive;
-    text-align: center;
+  margin: 0;
+  padding: 5% 0;
+  font-size: 2em;
+  font-family: cursive;
+  text-align: center;
+  height: 20px;
+}
+
+.slider {
+  height: 14vh;
 }
 
 .controlContainer {
-    /*padding-left: calc(50% - 150px);*/
-    width: 80%;
-    margin: 0 auto;
+  /*padding-left: calc(50% - 150px);*/
+  width: 80%;
+  margin: 0 auto;
 }
 
 #button_map {
-    width: 80%;
-    height: 50px;
-    margin-left: calc(10%);
-    background-color: lightcoral;
+  width: 80%;
+  height: 50px;
+  margin-left: calc(10%);
+  background-color: lightcoral;
 }
 
 #button_map > span > a {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
