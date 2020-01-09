@@ -1,5 +1,5 @@
 const pois = require("./pois");
-const bookings = require("./books");
+const bookings = require("./book");
 
 function sort(params, rooms) {
   // let params = {
