@@ -1,7 +1,5 @@
-import React, { Component, Children } from "react";
+import React, { Component } from "react";
 import "./MazeMap.css";
-import axios from "axios";
-import qs from "qs";
 
 let myMap;
 

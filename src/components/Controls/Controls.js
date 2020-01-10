@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 // import { Button } from "@material-ui/core";
 import "./Controls.css";
 import { Button } from "@material-ui/core";
+import BookChecker from "../BookChecker/BookChecker";
 
 class Controls extends Component {
   temperatureAttributes = {
@@ -64,6 +65,7 @@ class Controls extends Component {
   render() {
     return (
       <div id="control">
+        <BookChecker></BookChecker>
         <h1>Välj dina preferenser</h1>
 
         <div className="controlContainer">

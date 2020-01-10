@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./app.css";
-import MazeMap from "./Mazemap/MazeMap";
 import Controls from "./Controls/Controls";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Results from "./Results/Results";
