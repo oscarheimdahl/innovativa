@@ -1,5 +1,6 @@
 const pois = require("./pois");
 const bookings = require("./book");
+const noLoginBookings = require("./noLoginBook");
 
 function sort(params, rooms) {
   // let params = {
@@ -72,7 +73,8 @@ function sortByScore(results, sortedResults, numberOfRooms) {
           roomName: room[0],
           roomScore: room[1].roomScore,
           poi: pois[room[0]],
-          book: bookings[room[0]]
+          book: bookings[room[0]],
+          noLoginBook: noLoginBookings[room[0]]
         };
         lowestScore = room[1].roomScore;
       }
