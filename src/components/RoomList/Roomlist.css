@@ -1,3 +1,10 @@
+.roomList {
+  /* background: limegreen; */
+  text-align: center;
+
+  background: red;
+  margin: auto;
+}
 .room {
   align-self: center;
   background: white;
@@ -19,14 +26,16 @@
   background: lightgrey;
 }
 
-.roomList {
-  /* background: limegreen; */
-  text-align: center;
-
-  background: red;
-  margin: auto;
-}
-
 .roomName {
   margin-right: 30px;
+}
+
+.boka {
+  height: 6vh;
+}
+
+.timeBooked {
+  width: 24vh;
+  height: 6vh;
+  float: right;
 }

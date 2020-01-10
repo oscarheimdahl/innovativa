@@ -65,7 +65,6 @@ class Controls extends Component {
   render() {
     return (
       <div id="control">
-        <BookChecker></BookChecker>
         <h1>Välj dina preferenser</h1>
 
         <div className="controlContainer">

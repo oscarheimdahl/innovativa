@@ -11,14 +11,14 @@ class BookChecker extends Component {
   };
 
   componentDidMount() {
-    this.getHtml();
+    this.getHtml(this.props.url);
   }
 
-  getHtml = () => {
-    console.log("KLICK!");
-    const url =
-      "https://cloud.timeedit.net/umu/web/public1/ri1w7X8Q5QZZYYQv5Q077111y7Y7.html";
-    // "https://europe-west1-innovativa-1337.cloudfunctions.net/booked";
+  getHtml = url => {
+    // console.log("KLICK!");
+    // const url =
+    //   "https://cloud.timeedit.net/umu/web/public1/ri1w7X8Q5QZZYYQv5Q077111y7Y7.html";
+    // // "https://europe-west1-innovativa-1337.cloudfunctions.net/booked";
 
     axios
       .get(url)
@@ -40,11 +40,7 @@ class BookChecker extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <p>{this.state.timeBooked}</p>
-      </div>
-    );
+    return <div className="timeBooked">{this.state.timeBooked}</div>;
   }
 }
 export default BookChecker;

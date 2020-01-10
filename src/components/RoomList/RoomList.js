@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Roomlist.css";
 import { Button } from "@material-ui/core";
+import BookChecker from "../BookChecker/BookChecker";
 
 export default class RoomList extends Component {
   state = {
@@ -21,13 +22,11 @@ export default class RoomList extends Component {
             this.setState({ selectedRoomIndex: index });
           }}
         >
-          <span className="roomName">
-            {index + 1 + ".    " + room.roomName}
-          </span>
-          {"     "}
+          <span className="roomName">{index + 1 + ". " + room.roomName}</span>
           <a className="boka" href={room.book}>
             <Button color="secondary">Boka</Button>
           </a>
+          <BookChecker url={room.noLoginBook} />
         </div>
       );
     });
