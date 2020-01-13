@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import MazeMap from "../Mazemap/MazeMap";
-import RoomList from "../RoomList/RoomList";
-import Axios from "axios";
+import React, { Component } from 'react';
+import MazeMap from '../Mazemap/MazeMap';
+import RoomList from '../RoomList/RoomList';
+import Axios from 'axios';
 
 export default class Results extends Component {
   state = {
@@ -20,12 +20,11 @@ export default class Results extends Component {
 
   fakeFetchRooms = () => {
     const url =
-      "https://europe-west1-innovativa-1337.cloudfunctions.net/fetchAll";
+      'https://europe-west1-innovativa-1337.cloudfunctions.net/fetchAll';
 
     Axios.post(url, this.props.attributes).then(res => {
       let rooms = res.data;
       this.setState({ rooms });
-      console.log(rooms);
     });
     // const delay = t => new Promise(resolve => setTimeout(resolve, t));
     // delay(2000).then(res => {

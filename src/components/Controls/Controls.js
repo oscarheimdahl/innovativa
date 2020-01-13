@@ -1,32 +1,33 @@
-import React, { Component } from "react";
-import Slider from "../Slider/Slider";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import React, { Component } from 'react';
+import Slider from '../Slider/Slider';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 // import { BrowserRouter as Link } from "react-router-dom";
 // import { Button } from "@material-ui/core";
-import "./Controls.css";
-import { Button } from "@material-ui/core";
-import BookChecker from "../BookChecker/BookChecker";
+import './Controls.css';
+import { Button, Switch } from '@material-ui/core';
+import BookChecker from '../BookChecker/BookChecker';
+import CustomSwitch from '../CustomSwitch/CustomSwitch';
 
 class Controls extends Component {
   temperatureAttributes = {
     min: 15,
     max: 30,
     marks: [
-      { value: 15, label: "15°C" },
-      { value: 30, label: "30°C" }
+      { value: 15, label: '15°C' },
+      { value: 30, label: '30°C' }
     ],
-    title: "Temperatur",
+    title: 'Temperatur',
     defaultValue: this.props.initialAttributes.temperature
   };
   bodyAttributes = {
     min: 0,
     max: 10,
     marks: [
-      { value: 0, label: "Tomt" },
-      { value: 10, label: "Proppat" }
+      { value: 0, label: 'Tomt' },
+      { value: 10, label: 'Fullt' }
     ],
-    title: "Närvaro",
+    title: 'Närvaro',
     defaultValue: this.props.initialAttributes.body
   };
 
@@ -34,10 +35,10 @@ class Controls extends Component {
     min: 0,
     max: 50,
     marks: [
-      { value: 0, label: "Mörkt" },
-      { value: 50, label: "Ljust" }
+      { value: 0, label: 'Mörkt' },
+      { value: 50, label: 'Ljust' }
     ],
-    title: "Ljus",
+    title: 'Ljus',
     defaultValue: this.props.initialAttributes.light
   };
 
@@ -45,20 +46,20 @@ class Controls extends Component {
     min: 0,
     max: 10,
     marks: [
-      { value: 0, label: "Tört" },
-      { value: 10, label: "Djungel" }
+      { value: 0, label: 'Låg' },
+      { value: 10, label: 'Hög' }
     ],
-    title: "Luftfuktighet",
+    title: 'Luftfuktighet',
     defaultValue: this.props.initialAttributes.humidity
   };
   co2Attributes = {
     min: 0,
     max: 10,
     marks: [
-      { value: 0, label: "Lite" },
-      { value: 10, label: "Mycket" }
+      { value: 0, label: 'Bra' },
+      { value: 10, label: 'Dålig' }
     ],
-    title: "Luftkvalitet",
+    title: 'Luftkvalitet',
     defaultValue: this.props.initialAttributes.co2
   };
 
@@ -76,6 +77,10 @@ class Controls extends Component {
             config={this.bodyAttributes}
             onChange={(_, value) => this.props.setBody(value)}
           ></Slider>
+          {/* <CustomSwitch
+            setLight={this.props.setLight}
+            lightAttributes={this.lightAttributes}
+          ></CustomSwitch> */}
           <Slider
             config={this.lightAttributes}
             onChange={(_, value) => this.props.setLight(value)}

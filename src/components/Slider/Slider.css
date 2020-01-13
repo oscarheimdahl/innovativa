@@ -1,3 +1,7 @@
 .slider > p {
-    text-align: center;
+  text-align: center;
+}
+
+#sliderTitle {
+  text-align: center;
 }

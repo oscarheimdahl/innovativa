@@ -11,8 +11,24 @@
   text-align: center;
 }
 
-.slider {
+.slider,
+.switch {
   height: 14vh;
+}
+
+.switch {
+  /* background: red; */
+  /* left: calc(50% - 30px); */
+  margin: 0 30px;
+}
+
+.switchContainer {
+  margin: -4vh 0 20px 10%;
+
+  width: 80%;
+  /* background: red; */
+  /* margin-left: 25%; */
+  text-align: center;
 }
 
 .controlContainer {
@@ -22,9 +38,10 @@
 }
 
 #button_map {
-  width: 80%;
-  height: 50px;
-  margin-left: calc(10%);
+  margin-top: -20px;
+  width: 60px;
+  height: 40px;
+  margin-left: calc(50% - 30px);
   background-color: lightcoral;
 }
 

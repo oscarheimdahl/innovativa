@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import "./Roomlist.css";
-import { Button } from "@material-ui/core";
-import BookChecker from "../BookChecker/BookChecker";
+import React, { Component } from 'react';
+import './Roomlist.css';
+import { Button } from '@material-ui/core';
+import BookChecker from '../BookChecker/BookChecker';
 
 export default class RoomList extends Component {
   state = {
@@ -13,8 +13,8 @@ export default class RoomList extends Component {
         <div
           className={
             this.state.selectedRoomIndex === index
-              ? "selectedRoom room"
-              : "room"
+              ? 'selectedRoom room'
+              : 'room'
           }
           key={index}
           onClick={() => {
@@ -22,11 +22,15 @@ export default class RoomList extends Component {
             this.setState({ selectedRoomIndex: index });
           }}
         >
-          <span className="roomName">{index + 1 + ". " + room.roomName}</span>
-          <a className="boka" href={room.book}>
-            <Button color="secondary">Boka</Button>
-          </a>
-          <BookChecker url={room.noLoginBook} />
+          <div className="roomListContent">
+            <span className="roomName">{index + 1 + '. ' + room.roomName}</span>
+            <BookChecker url={room.noLoginBook} />
+            <a className="boka" href={room.book}>
+              <Button color="secondary" id="buttonBook">
+                Boka
+              </Button>
+            </a>
+          </div>
         </div>
       );
     });

@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import "./MazeMap.css";
+import React, { Component } from 'react';
+import './MazeMap.css';
 
 let myMap;
 
 class MazeMap extends Component {
   state = {
     // The DOM element ID for the map
-    container: "mazemap-container",
+    container: 'mazemap-container',
     // The ID of the campus to show
     campuses: 289,
     // Initial position of map
@@ -15,7 +15,7 @@ class MazeMap extends Component {
     zoom: 14,
     // Initial floor z level of map
     zLevel: 2,
-    autoSetRTLTextPlugin: ""
+    autoSetRTLTextPlugin: ''
   };
 
   componentDidUpdate(prevProps) {
@@ -27,8 +27,7 @@ class MazeMap extends Component {
   componentDidMount() {
     try {
       myMap = new window.Mazemap.Map(this.state);
-      console.log(this.state);
-      myMap.on("load", function() {
+      myMap.on('load', function() {
         // Initialize a Highlighter for POIs
         // Storing the object on the map just makes it easy to access for other things
         myMap.highlighter = new window.Mazemap.Highlighter(myMap, {
@@ -39,7 +38,7 @@ class MazeMap extends Component {
         });
       });
     } catch {
-      console.log("Ajdå");
+      console.log('Ajdå');
     }
 
     this.setState({});
@@ -49,7 +48,7 @@ class MazeMap extends Component {
     window.Mazemap.Data.getPoi(poi).then(poi => {
       // var myMap = this.state.myMap;
       myMap.zLevel = poi.properties.zLevel;
-      if (poi.geometry.type === "Polygon") {
+      if (poi.geometry.type === 'Polygon') {
         myMap.highlighter.highlight(poi);
       }
 

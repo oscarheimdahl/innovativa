@@ -28,14 +28,30 @@
 
 .roomName {
   margin-right: 30px;
+  font-weight: bold;
 }
 
 .boka {
   height: 6vh;
 }
 
+a {
+  text-decoration: none;
+}
+
 .timeBooked {
-  width: 24vh;
   height: 6vh;
-  float: right;
+  margin: 0 10px;
+  display: inline-block;
+}
+
+#buttonBook {
+  text-decoration: none;
+}
+
+.roomListContent {
+  position: relative;
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 500px;
 }
