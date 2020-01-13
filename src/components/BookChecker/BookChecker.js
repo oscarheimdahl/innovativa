@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import axios from "axios";
-import cheerio from "cheerio";
+import React, { Component } from 'react';
+import axios from 'axios';
+import cheerio from 'cheerio';
 
 // import { BrowserRouter as Link } from "react-router-dom";
 // import { Button } from "@material-ui/core";
 
 class BookChecker extends Component {
   state = {
-    timeBooked: ""
+    timeBooked: ''
   };
 
   componentDidMount() {
@@ -27,7 +27,7 @@ class BookChecker extends Component {
         //console.log(res.data);
         const $ = cheerio.load(res.data);
 
-        $(".timeIsNow").each((index, element) => {
+        $('.timeIsNow').each((index, element) => {
           console.log($(element).text());
           this.setState({
             timeBooked: $(element).text()
@@ -40,7 +40,13 @@ class BookChecker extends Component {
   };
 
   render() {
-    return <div className="timeBooked">{this.state.timeBooked}</div>;
+    return this.state.timeBooked === '' ? (
+      <div style={{ color: 'lightgreen' }}>Ledigt</div>
+    ) : (
+      <div className="timeBooked" style={{ color: 'red' }}>
+        {this.state.timeBooked}
+      </div>
+    );
   }
 }
 export default BookChecker;

@@ -40,15 +40,13 @@ class MazeMap extends Component {
     } catch {
       console.log('Ajdå');
     }
-
-    this.setState({});
   }
 
   setRoom(poi) {
     window.Mazemap.Data.getPoi(poi).then(poi => {
       // var myMap = this.state.myMap;
       myMap.zLevel = poi.properties.zLevel;
-      if (poi.geometry.type === 'Polygon') {
+      if (poi.geometry.type === 'Polygon' && myMap.highlighter) {
         myMap.highlighter.highlight(poi);
       }
 

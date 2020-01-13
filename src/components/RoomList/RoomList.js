@@ -5,8 +5,15 @@ import BookChecker from '../BookChecker/BookChecker';
 
 export default class RoomList extends Component {
   state = {
-    selectedRoomIndex: null
+    selectedRoomIndex: 0
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.rooms !== this.props.rooms && this.props.rooms[0]) {
+      this.props.setMapRoom(this.props.rooms[0].poi);
+    }
+  }
+
   renderRooms = () => {
     return this.props.rooms.map((room, index) => {
       return (
@@ -24,12 +31,12 @@ export default class RoomList extends Component {
         >
           <div className="roomListContent">
             <span className="roomName">{index + 1 + '. ' + room.roomName}</span>
-            <BookChecker url={room.noLoginBook} />
-            <a className="boka" href={room.book}>
-              <Button color="secondary" id="buttonBook">
-                Boka
-              </Button>
-            </a>
+            <div>
+              <BookChecker url={room.noLoginBook} />
+              <a className="boka" href={room.book}>
+                <Button id="buttonBook">Boka</Button>
+              </a>
+            </div>
           </div>
         </div>
       );
